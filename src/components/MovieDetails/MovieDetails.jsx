@@ -9,7 +9,10 @@ const MovieDetails = ({ movies }) => {
 
   return (
     <div>
-      <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
+      <img
+        src={`https://image.tmdb.org/t/p/w500${movie.poster_path} `}
+        alt="cze"
+      />
       <Link to="/">Go back</Link>
       <h2>Title: {movie.title}</h2>
       <p>User Score: {averageScore}%</p>
