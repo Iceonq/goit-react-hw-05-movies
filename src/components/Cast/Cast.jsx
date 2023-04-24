@@ -22,7 +22,7 @@ const Cast = () => {
       }
     };
     fetchCast();
-  }, []);
+  }, [movieId]);
 
   return (
     <ul>
@@ -31,7 +31,8 @@ const Cast = () => {
           return (
             <li>
               <img
-                src={`https://image.tmdb.org/t/p/w200${castSinglePerson.profile_path} `}
+                src={`https://image.tmdb.org/t/p/w200${castSinglePerson.profile_path}`}
+                alt="cze"
               />
               <p>{castSinglePerson.name}</p>
             </li>

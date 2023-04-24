@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useParams, Outlet } from 'react-router-dom';
 import axios from 'axios';
+import { nanoid } from 'nanoid';
 
 const KEY = '65128993e18cf258695ad7fce6893761';
 
@@ -47,7 +48,7 @@ const MovieDetails = ({ movies }) => {
       <ul>
         {movieByIdGenres &&
           movieByIdGenres.map(movieByIdGenre => {
-            return <li>{movieByIdGenre.name}</li>;
+            return <li key={nanoid()}>{movieByIdGenre.name}</li>;
           })}
       </ul>
       <span>Additional information</span>
