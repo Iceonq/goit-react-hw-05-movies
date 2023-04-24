@@ -14,7 +14,7 @@ import Reviews from './Reviews/Reviews';
 const KEY = '65128993e18cf258695ad7fce6893761';
 
 export const App = () => {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState(null);
 
   useEffect(() => {
     const fetchMovies = async () => {
