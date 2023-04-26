@@ -14,7 +14,7 @@ const Home = () => {
 
   return (
     <div>
-      <h1>Trending Today</h1>
+      <h1>Trending Today.</h1>
 
       <ul>
         {movies.map(movie => {
