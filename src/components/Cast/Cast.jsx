@@ -11,7 +11,7 @@ const Cast = () => {
       const castData = await fetchCast(movieId);
       setCast(castData);
     },
-    []
+    [movieId]
   );
 
   return (
