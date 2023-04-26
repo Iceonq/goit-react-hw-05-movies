@@ -1,12 +1,21 @@
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { fetchTrendingMovies } from 'utils/fetchTrendingMovies';
 
-const Home = ({ movies }) => {
-  if (!movies) {
-    return <div>Loading...</div>;
-  }
+const Home = () => {
+  const [movies, setMovies] = useState([]);
+  useEffect(() => {
+    const getMovies = async () => {
+      const moviesData = await fetchTrendingMovies();
+      setMovies(moviesData);
+    };
+    getMovies();
+  }, []);
+
   return (
     <div>
       <h1>Trending Today</h1>
+
       <ul>
         {movies.map(movie => {
           return (

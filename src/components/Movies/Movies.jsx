@@ -11,7 +11,6 @@ const Movies = () => {
   const handleSubmit = e => {
     e.preventDefault();
     setSearchQuery(e.target.searchInput.value);
-    console.log(moviesBySearchQuery);
   };
 
   useEffect(() => {
@@ -41,8 +40,8 @@ const Movies = () => {
         {moviesBySearchQuery &&
           moviesBySearchQuery.map(movie => {
             return (
-              <Link to={`/movies/${movie.id}`}>
-                <li id={movie.id}>{movie.title}</li>
+              <Link key={movie.id} to={`/movies/${movie.id}`}>
+                <li>{movie.title}</li>
               </Link>
             );
           })}
