@@ -9,16 +9,16 @@ const MovieDetails = () => {
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(
-    () => async () => {
+  useEffect(() => {
+    const movieFetch = async () => {
       const movieData = await fetchMovieDetails(movieId);
       if (movieData) {
         setMovie(movieData);
       }
       setLoading(false);
-    },
-    [movieId, loading]
-  );
+    };
+    movieFetch();
+  }, [movieId, loading]);
 
   return (
     <>
