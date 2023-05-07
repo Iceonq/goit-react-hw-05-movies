@@ -6,13 +6,13 @@ const Cast = () => {
   const { movieId } = useParams();
   const [cast, setCast] = useState();
 
-  useEffect(
-    () => async () => {
+  useEffect(() => {
+    const castFetch = async () => {
       const castData = await fetchCast(movieId);
       setCast(castData);
-    },
-    [movieId]
-  );
+    };
+    castFetch();
+  }, [movieId]);
 
   return (
     <ul>

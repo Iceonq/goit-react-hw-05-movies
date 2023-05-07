@@ -7,13 +7,13 @@ const Reviews = () => {
   const { movieId } = useParams();
   const [reviews, setReviews] = useState([]);
 
-  useEffect(
-    () => async () => {
+  useEffect(() => {
+    const reviewsFetch = async () => {
       const reviewsData = await fetchReviews(movieId);
       setReviews(reviewsData);
-    },
-    [movieId]
-  );
+    };
+    reviewsFetch();
+  }, [movieId]);
 
   return (
     <div>
