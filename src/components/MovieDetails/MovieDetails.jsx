@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useParams, Outlet } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 import { fetchMovieDetails } from '../../utils/fetchMovieDetails';
 
 const MovieDetails = () => {
+  const location = useLocation();
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -30,7 +31,7 @@ const MovieDetails = () => {
             src={`https://image.tmdb.org/t/p/w500${movie.poster_path} `}
             alt="cze"
           />
-          <Link to="/">Go back</Link>
+          <Link to={location.state?.from || '/'}>Go back</Link>
           <h2>Title: {movie.title}</h2>
           <p>User Score: {Math.ceil(movie.vote_average * 10)}%</p>
           <h3>Overview</h3>

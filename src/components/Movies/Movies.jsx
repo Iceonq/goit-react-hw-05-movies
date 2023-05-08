@@ -40,7 +40,11 @@ const Movies = () => {
         {moviesBySearchQuery &&
           moviesBySearchQuery.map(movie => {
             return (
-              <Link key={movie.id} to={`/movies/${movie.id}`}>
+              <Link
+                key={movie.id}
+                to={`/movies/${movie.id}`}
+                state={{ from: '/movies' }}
+              >
                 <li>{movie.title}</li>
               </Link>
             );
