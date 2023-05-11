@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const KEY = '65128993e18cf258695ad7fce6893761';
 
 const Movies = () => {
+  const location = useLocation();
   const [searchQuery, setSearchQuery] = useState('');
   const [moviesBySearchQuery, setMoviesBySearchQuery] = useState([]);
+
+  console.log(location);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -28,6 +31,8 @@ const Movies = () => {
     };
     fetchBySearchQuery();
   }, [searchQuery]);
+
+  console.log(location);
 
   return (
     <div>

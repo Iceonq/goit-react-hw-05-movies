@@ -1,6 +1,11 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { useParams, Outlet } from 'react-router-dom';
+import {
+  useParams,
+  Outlet,
+  Link,
+  useLocation,
+  useHistory,
+} from 'react-router-dom';
 import { nanoid } from 'nanoid';
 import { fetchMovieDetails } from '../../utils/fetchMovieDetails';
 
