@@ -9,12 +9,10 @@ const Movies = () => {
   const [searchQuery, setSearchQuery] = useSearchParams();
   const [moviesBySearchQuery, setMoviesBySearchQuery] = useState([]);
   const realQuery = searchQuery.get('query');
-  console.log(realQuery);
 
   const handleSubmit = e => {
     e.preventDefault();
     setSearchQuery({ query: e.target.searchInput.value });
-    console.log(location);
   };
 
   useEffect(() => {

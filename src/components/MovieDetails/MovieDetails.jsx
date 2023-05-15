@@ -21,7 +21,6 @@ const MovieDetails = () => {
     movieFetch();
   }, [movieId, loading]);
 
-  console.log(location);
   return (
     <>
       {loading ? (
