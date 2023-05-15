@@ -9,7 +9,7 @@ const Movies = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [moviesBySearchQuery, setMoviesBySearchQuery] = useState([]);
 
-  const handleSubmit = async e => {
+  const handleSubmit = e => {
     e.preventDefault();
     setSearchQuery(e.target.searchInput.value);
     window.history.pushState(null, '', `?search=${e.target.searchInput.value}`);
