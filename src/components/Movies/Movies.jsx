@@ -1,18 +1,19 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 
 const KEY = '65128993e18cf258695ad7fce6893761';
 
 const Movies = () => {
   const location = useLocation();
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useSearchParams();
   const [moviesBySearchQuery, setMoviesBySearchQuery] = useState([]);
+  const realQuery = searchQuery.get('query');
+  console.log(realQuery);
 
   const handleSubmit = e => {
     e.preventDefault();
-    setSearchQuery(e.target.searchInput.value);
-    window.history.pushState(null, '', `?search=${e.target.searchInput.value}`);
+    setSearchQuery({ query: e.target.searchInput.value });
     console.log(location);
   };
 
@@ -20,7 +21,7 @@ const Movies = () => {
     const fetchBySearchQuery = async () => {
       try {
         const response = await axios.get(
-          `https://api.themoviedb.org/3/search/movie?api_key=${KEY}&query=${searchQuery}`
+          `https://api.themoviedb.org/3/search/movie?api_key=${KEY}&query=${realQuery}`
         );
         const newSearchQuery = response.data.results;
 
@@ -29,8 +30,12 @@ const Movies = () => {
         console.log(`Error: ${error}`);
       }
     };
-    fetchBySearchQuery();
-  }, [searchQuery]);
+    if (realQuery) {
+      fetchBySearchQuery();
+    } else {
+      setMoviesBySearchQuery([]);
+    }
+  }, [realQuery, searchQuery]);
 
   return (
     <div>
