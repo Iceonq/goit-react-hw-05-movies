@@ -9,11 +9,11 @@ const Movies = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [moviesBySearchQuery, setMoviesBySearchQuery] = useState([]);
 
-  console.log(location);
-
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
     setSearchQuery(e.target.searchInput.value);
+    window.history.pushState(null, '', `?search=${e.target.searchInput.value}`);
+    console.log(location);
   };
 
   useEffect(() => {
@@ -32,8 +32,6 @@ const Movies = () => {
     fetchBySearchQuery();
   }, [searchQuery]);
 
-  console.log(location);
-
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -48,7 +46,7 @@ const Movies = () => {
               <Link
                 key={movie.id}
                 to={`/movies/${movie.id}`}
-                state={{ from: '/movies' }}
+                state={{ from: location }}
               >
                 <li>{movie.title}</li>
               </Link>

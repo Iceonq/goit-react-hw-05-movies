@@ -1,16 +1,11 @@
 import { useState, useEffect } from 'react';
-import {
-  useParams,
-  Outlet,
-  Link,
-  useLocation,
-  useHistory,
-} from 'react-router-dom';
+import { useParams, Outlet, Link, useLocation } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 import { fetchMovieDetails } from '../../utils/fetchMovieDetails';
 
 const MovieDetails = () => {
   const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/';
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -26,6 +21,7 @@ const MovieDetails = () => {
     movieFetch();
   }, [movieId, loading]);
 
+  console.log(location);
   return (
     <>
       {loading ? (
@@ -36,7 +32,7 @@ const MovieDetails = () => {
             src={`https://image.tmdb.org/t/p/w500${movie.poster_path} `}
             alt="cze"
           />
-          <Link to={location.state?.from || '/'}>Go back</Link>
+          <Link to={backLinkHref}>Go back</Link>
           <h2>Title: {movie.title}</h2>
           <p>User Score: {Math.ceil(movie.vote_average * 10)}%</p>
           <h3>Overview</h3>
@@ -50,8 +46,12 @@ const MovieDetails = () => {
               })}
           </ul>
           <span>Additional information</span>
-          <Link to={`cast`}>Cast</Link>
-          <Link to={`reviews`}>Reviews</Link>
+          <Link to="cast" state={{ from: backLinkHref }}>
+            Cast
+          </Link>
+          <Link to="reviews" state={{ from: backLinkHref }}>
+            Reviews
+          </Link>
           <Outlet />
         </div>
       ) : (
